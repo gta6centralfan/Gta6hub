@@ -1,40 +1,125 @@
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #05060a;
-  color: #e6e8ef;
+/* ===== GTA VI HUB — Dark Neon Polish ===== */
+
+:root{
+  --bg: #0b0d13;
+  --bg2: #0e1018;
+  --text: #e9ecf5;
+  --muted: #a7aec2;
+  --card: rgba(255,255,255,0.04);
+  --border: rgba(255,255,255,0.08);
+  --accent1: #ff2d55; /* pink */
+  --accent2: #7a5cff; /* violet */
+  --accent3: #00e6a8; /* aqua */
+  --glow: 0 10px 30px rgba(0,0,0,0.45), inset 0 0 0 1px rgba(255,255,255,0.04);
 }
 
-.header {
-  background: #0b0e16;
-  padding: 12px;
-  position: sticky;
-  top: 0;
+*{ box-sizing: border-box }
+html, body{
+  margin:0; padding:0; color:var(--text);
+  font-family: ui-sans-serif, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+  background:
+    radial-gradient(1200px 700px at -10% -20%, rgba(255,45,85,0.10), transparent 50%),
+    radial-gradient(900px 600px at 110% 0%, rgba(0,230,168,0.10), transparent 40%),
+    linear-gradient(180deg, var(--bg), var(--bg2));
+  line-height:1.6;
 }
 
-.nav { display: flex; align-items: center; }
-.brand { font-weight: bold; color: #fff; margin-right: auto; }
-.navlinks a { margin-left: 12px; color: #ccc; text-decoration: none; }
-.navlinks a:hover { color: #fff; }
+a{ color: inherit; text-decoration: none }
+img{ max-width: 100%; display: block }
+.container{ max-width: 1100px; margin: 0 auto; padding: 20px }
 
-.hero {
-  padding: 40px;
-  text-align: center;
+/* Header / Nav */
+.header{
+  position: sticky; top: 0; z-index: 50;
+  backdrop-filter: blur(10px);
+  background: linear-gradient(180deg, rgba(11,13,19,0.85), rgba(11,13,19,0.55));
+  border-bottom: 1px solid var(--border);
 }
-.highlight {
-  background: linear-gradient(90deg,#ff2d55,#7a5cff,#00e6a8);
-  -webkit-background-clip: text;
-  color: transparent;
+.nav{ display:flex; align-items:center; gap:16px; padding:12px 0 }
+.brand{ font-weight: 800; letter-spacing: .4px }
+.badge{ font-size: 12px; color: var(--muted); padding: 3px 8px; border:1px solid var(--border); border-radius: 999px; margin-left: 8px }
+
+.navlinks{ margin-left:auto; display:flex; gap:12px; flex-wrap:wrap }
+.navlinks a{
+  padding:10px 12px; border-radius:10px;
+  border:1px solid transparent; transition: .2s ease;
+}
+.navlinks a:hover{ background: var(--card); border-color: var(--border) }
+
+/* Hero */
+.hero{
+  position: relative; overflow: hidden;
+  padding: 64px 0 36px;
+}
+.hero::before{
+  content:""; position:absolute; inset:-20%;
+  background:
+    radial-gradient(600px 300px at 20% 10%, rgba(122,92,255,0.18), transparent 60%),
+    radial-gradient(600px 300px at 80% 0%, rgba(255,45,85,0.16), transparent 60%),
+    radial-gradient(700px 350px at 50% 100%, rgba(0,230,168,0.12), transparent 60%);
+  filter: blur(10px);
+}
+.hero .container{ position:relative }
+.hero h1{
+  margin:0 0 10px;
+  font-size: clamp(28px, 5vw, 56px);
+  line-height:1.08; letter-spacing: .2px;
+}
+.hero p{ margin:0; color: var(--muted) }
+.highlight{
+  background: linear-gradient(90deg, var(--accent1), var(--accent2), var(--accent3));
+  -webkit-background-clip: text; background-clip: text; color: transparent; font-weight: 800;
 }
 
-.section { padding: 30px; }
-.grid { display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(250px,1fr)); }
-.card {
-  background: rgba(255,255,255,0.05);
-  border-radius: 10px;
-  padding: 14px;
+/* Search (if present) */
+.search{ display:flex; gap:10px; margin-top:16px; flex-wrap:wrap }
+.search input{
+  flex:1; min-width: 240px;
+  padding: 14px 16px; color: var(--text);
+  background: var(--card); border:1px solid var(--border); border-radius:12px; outline:none;
 }
-.kicker { font-size: 12px; color: #aaa; text-transform: uppercase; }
-.meta { font-size: 12px; color: #aaa; }
+.search input:focus{ box-shadow: 0 0 0 4px rgba(122,92,255,0.25); border-color: #9b72ff }
+.search button{
+  padding: 14px 18px; border-radius:12px;
+  border:1px solid var(--border); background: rgba(255,255,255,0.06); color: var(--text)
+}
 
-.footer { text-align: center; padding: 20px; color: #777; }
+/* Sections & Cards */
+.section{ margin: 26px 0 34px }
+.section h2{ margin: 0 0 12px; font-size: 22px }
+
+.grid{ display:grid; gap:18px; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
+.card{
+  border:1px solid var(--border); border-radius:16px; overflow:hidden;
+  background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+  box-shadow: var(--glow); transition: transform .18s ease, border-color .18s ease;
+}
+.card:hover{ transform: translateY(-4px); border-color: rgba(155,114,255,0.35) }
+.card .thumb{
+  aspect-ratio: 16/9;
+  background:
+    radial-gradient( at 30% 30%, rgba(255,45,85,0.25), transparent 40%),
+    radial-gradient( at 70% 70%, rgba(0,230,168,0.25), transparent 40%),
+    linear-gradient(135deg, #10121a, #0d0f17);
+}
+.card .body{ padding:14px 14px 18px }
+.kicker{ font-size:12px; color: var(--muted); letter-spacing:.6px; text-transform:uppercase }
+.card h3{ margin:6px 0 6px; font-size:18px }
+.meta{ font-size:12px; color: var(--muted) }
+.tag{ font-size:12px; padding:4px 8px; border:1px solid var(--border); border-radius:999px; color: var(--muted) }
+
+/* Buttons (optional) */
+.button-row{ display:flex; gap:10px; flex-wrap:wrap }
+.button{ padding:10px 12px; border-radius:10px; border:1px solid var(--border); background: rgba(255,255,255,0.06); color:var(--text) }
+.button:hover{ border-color: rgba(155,114,255,0.35) }
+
+/* Footer */
+.footer{
+  margin-top: 44px; padding: 22px 0;
+  border-top: 1px solid var(--border); color: var(--muted);
+}
+.footer a{ color: var(--text) }
+
+@media (prefers-reduced-motion: reduce){
+  *{ transition:none !important }
+}
